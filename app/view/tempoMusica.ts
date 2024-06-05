@@ -1,0 +1,9 @@
+import { converterParaTempo } from "../service/converterTempo.js";
+
+export function adicionaTempoMusica(tempoMusica: number): void {
+    const element = document.getElementById(`tempoMusica`);
+
+    if (element !== null) {
+        element.innerText = converterParaTempo(tempoMusica);
+    }
+}
