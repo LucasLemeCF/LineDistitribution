@@ -1,7 +1,8 @@
 import { converterParaTempo } from "../service/converterTempo.js";
-export function adicionaTempoMusica(tempoMusica) {
+import { musica } from "../util/dados.js";
+export function adicionaTempoMusica() {
     const element = document.getElementById(`tempoMusica`);
     if (element !== null) {
-        element.innerText = converterParaTempo(tempoMusica);
+        element.innerText = converterParaTempo(musica.tempoAtual);
     }
 }

@@ -1,29 +1,25 @@
-import { Momento } from "../models/momento.js";
 import { Pessoa } from "../models/pessoa.js";
-import { momentos, pessoas } from "../util/dados.js";
-import { converterParaSegundos, paraCemMilisegundos } from "./converterTempo.js";
+import { musica, pessoas } from "../util/dados.js";
+import { converterParaSegundos } from "./converterTempo.js";
 import { buscaPessoaPorId } from "./realizarBusca.js";
 
-export function controlarCronometro(tempoMusica: number, numeroMomento: number): number {
-    console.log(numeroMomento);
-    if(!acabouMomentos(numeroMomento, momentos) && momentoDeCantar(tempoMusica, numeroMomento)) {
+export function controlarCronometro(): void {
+    if(!acabouMomentos() && momentoDeCantar()) {
         pausarTodosCronometros();
-        ativaCronometro(momentos[numeroMomento].idPessoa);
-        numeroMomento++
-        return numeroMomento;
+        ativaCronometro();
+        musica.incrementaMomentoAtual();
     }
-    return numeroMomento;
 }
 
-function acabouMomentos(numeroMomento: number, momentos: Momento[]): Boolean {
-    return numeroMomento == momentos.length;
+function acabouMomentos(): Boolean {
+    return musica.momentoAtual == musica.momentos.length;
 }
 
-function momentoDeCantar(tempoMusica: number, numeroMomento: number): Boolean {
-    return paraCemMilisegundos(momentos[numeroMomento].inicio) == tempoMusica;
+function momentoDeCantar(): Boolean {
+    return musica.momentos[musica.momentoAtual].inicio == musica.tempoAtual;
 }
 
-function pausarTodosCronometros(): void {
+export function pausarTodosCronometros(): void {
     pessoas.forEach((pessoa: Pessoa) => {
         pausarCronometro(pessoa.id);
     });
@@ -36,8 +32,8 @@ function pausarCronometro(idPessoa: number): void {
     }
 }
 
-function ativaCronometro(idPessoa: number): void {
-    const pessoa = buscaPessoaPorId(idPessoa);
+function ativaCronometro(): void {
+    const pessoa = buscaPessoaPorId(musica.momentos[musica.momentoAtual].idPessoa);
     
     if (pessoa) {
         const intervalId = setInterval(() => {

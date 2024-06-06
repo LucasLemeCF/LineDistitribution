@@ -1,4 +1,5 @@
 import { Momento } from "../models/momento.js"
+import { Musica } from "../models/musica.js"
 import { Pessoa } from "../models/pessoa.js"
 
 // (Posição inicial, Nome)
@@ -17,3 +18,5 @@ export var momentos: Momento[] = [
     new Momento(2, '00:02:00'),
     new Momento(3, '00:05:00'),
 ]
+
+export var musica = new Musica('00:10:00', pessoas, momentos)

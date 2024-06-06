@@ -1,19 +1,23 @@
+import { musica } from '../util/dados.js';
 import { adicionaTempoMusica } from '../view/tempoMusica.js';
-import { controlarCronometro } from './controlarCronometro.js';
-
-var tempoMusica: number; 
-tempoMusica = 0;
+import { controlarCronometro, pausarTodosCronometros } from './controlarCronometro.js';
 
 export function iniciarMusica(): void {
-    let numeroMomento = 0;
-
-    setInterval(() => {
+    const intervalId = setInterval(() => {
         
-        tempoMusica++;
+        musica.incrementaTempoAtual();
 
-        adicionaTempoMusica(tempoMusica);
-        numeroMomento = controlarCronometro(tempoMusica, numeroMomento);
+        adicionaTempoMusica();
+        controlarCronometro();
         // controlarSubirPosicao(tempoMusica);
+        finalizaMusica(intervalId);
         
     }, 100);
+}
+
+function finalizaMusica(intervalId: any): void {
+    if (musica.tempoAtual == musica.tempoFinal) {
+        pausarTodosCronometros();
+        clearInterval(intervalId);
+    }
 }

@@ -1,4 +1,4 @@
-export function paraCemMilisegundos(tempo) {
+export function paraDecimoDeSegundo(tempo) {
     const [minutos, segundos, milisegundos] = tempo.split(':');
     return ((parseInt(minutos) * 60 + parseInt(segundos)) * 1000 + parseInt(milisegundos)) / 100;
 }
@@ -22,10 +22,4 @@ export function converterParaTempo(tempo) {
         milisegundosStr = '00';
     }
     return `${minutosStr}:${segundosStr}:${milisegundosStr}`;
-}
-function converterTempoParaMilisegundos(tempoString) {
-    const [minutos, segundos, milisegundosString] = tempoString.split(':');
-    const milisegundos = parseInt(milisegundosString);
-    const milisegundosTotal = (parseInt(minutos) * 60 + parseInt(segundos)) * 1000 + milisegundos;
-    return milisegundosTotal;
 }

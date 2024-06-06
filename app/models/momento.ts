@@ -1,10 +1,12 @@
+import { paraDecimoDeSegundo } from "../service/converterTempo.js";
+
 export class Momento {
     private _idPessoa: number;
-    private _inicio: string;
+    private _inicio: number;
 
     constructor(idPessoa: number, inicio: string) {
         this._idPessoa = idPessoa;
-        this._inicio = inicio;
+        this._inicio = paraDecimoDeSegundo(inicio);
     }
 
     get idPessoa() {

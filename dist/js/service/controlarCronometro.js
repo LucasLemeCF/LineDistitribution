@@ -1,23 +1,20 @@
-import { momentos, pessoas } from "../util/dados.js";
-import { converterParaSegundos, paraCemMilisegundos } from "./converterTempo.js";
+import { musica, pessoas } from "../util/dados.js";
+import { converterParaSegundos } from "./converterTempo.js";
 import { buscaPessoaPorId } from "./realizarBusca.js";
-export function controlarCronometro(tempoMusica, numeroMomento) {
-    console.log(numeroMomento);
-    if (!acabouMomentos(numeroMomento, momentos) && momentoDeCantar(tempoMusica, numeroMomento)) {
+export function controlarCronometro() {
+    if (!acabouMomentos() && momentoDeCantar()) {
         pausarTodosCronometros();
-        ativaCronometro(momentos[numeroMomento].idPessoa);
-        numeroMomento++;
-        return numeroMomento;
+        ativaCronometro();
+        musica.incrementaMomentoAtual();
     }
-    return numeroMomento;
 }
-function acabouMomentos(numeroMomento, momentos) {
-    return numeroMomento == momentos.length;
+function acabouMomentos() {
+    return musica.momentoAtual == musica.momentos.length;
 }
-function momentoDeCantar(tempoMusica, numeroMomento) {
-    return paraCemMilisegundos(momentos[numeroMomento].inicio) == tempoMusica;
+function momentoDeCantar() {
+    return musica.momentos[musica.momentoAtual].inicio == musica.tempoAtual;
 }
-function pausarTodosCronometros() {
+export function pausarTodosCronometros() {
     pessoas.forEach((pessoa) => {
         pausarCronometro(pessoa.id);
     });
@@ -28,8 +25,8 @@ function pausarCronometro(idPessoa) {
         clearInterval(pessoa.intervalId);
     }
 }
-function ativaCronometro(idPessoa) {
-    const pessoa = buscaPessoaPorId(idPessoa);
+function ativaCronometro() {
+    const pessoa = buscaPessoaPorId(musica.momentos[musica.momentoAtual].idPessoa);
     if (pessoa) {
         const intervalId = setInterval(() => {
             pessoa.tempo++;
