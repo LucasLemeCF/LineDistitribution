@@ -1,25 +1,28 @@
-import { momentos, pessoas } from "../util/dados.js";
-import { atualizarPessoas } from "../view/listaPessoas.js";
-import { buscaPessoaPorId, buscaPessoaPosicaoAcima } from "./realizarBusca.js";
-export function controlarSubirPosicao(numeroVez) {
-    if (numeroVez > 0) {
-        let pessoaCantando = buscaPessoaPorId(momentos[numeroVez - 1].idPessoa);
-        let PessoaPosicaoAcima = buscaPessoaPosicaoAcima(pessoaCantando?.posicao || 0);
-        if (pessoaCantando !== null && pessoaCantando?.tempo > (PessoaPosicaoAcima?.tempo || 0)) {
-            console.log(pessoaCantando?.nome);
-            subirPosicao(pessoaCantando?.posicao || 0);
-        }
-    }
+import { musica } from "../util/dados.js";
+export function controlarSubirPosicao() {
+    // console.log(musica.momentoAtual, musica.momentos.length)
+    // if (!acabouMomentos()) {
+    //     // console.log(musica.pessoaPosicaoAcima)
+    //     // if (cantorPassouPosicao()) {
+    //     //     // subirPosicao();
+    //     // }
+    // }
 }
-function subirPosicao(posicaoAtual) {
-    let posicaoAcima = posicaoAtual - 1;
-    pessoas[posicaoAtual - 1].posicao--;
-    pessoas[posicaoAcima - 1].posicao++;
-    let idDivDescendo = 'pessoa' + pessoas[posicaoAcima - 1].posicao;
-    let idDivSubindo = 'pessoa' + pessoas[posicaoAtual - 1].posicao;
-    animarAtualizacao(idDivDescendo, idDivSubindo);
-    reorganizarPosPosicao();
-    atualizarPessoas();
+function acabouMomentos() {
+    return musica.momentoAtual < musica.momentos.length;
+}
+function cantorPassouPosicao() {
+    return musica.pessoaCantando.tempo > musica.pessoaPosicaoAcima.tempo;
+}
+function subirPosicao() {
+    // if (musica.pessoaCantando != undefined ) {
+    //     // console.log(musica.pessoaCantando);
+    //     // musica.pessoaCantando.setPosicao(musica.pessoaCantando.posicao - 1);   
+    // }
+    // musica.pessoaPosicaoAcima.descerPosicao();
+    // animarAtualizacao(idDivDescendo, idDivSubindo);
+    // reorganizarPosPosicao();
+    // atualizarPessoas();
 }
 function animarAtualizacao(idDivDescendo, idDivSubindo) {
     const pessoaDescendo = document.getElementById(idDivDescendo);
@@ -32,5 +35,5 @@ function animarAtualizacao(idDivDescendo, idDivSubindo) {
     }, 500);
 }
 function reorganizarPosPosicao() {
-    pessoas.sort((a, b) => a.posicao - b.posicao);
+    musica.pessoas.sort((a, b) => a.posicao - b.posicao);
 }

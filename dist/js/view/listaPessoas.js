@@ -1,15 +1,22 @@
-import { pessoas } from "../util/dados.js";
+import { converterParaSegundos } from "../service/converterTempo.js";
+import { musica } from "../util/dados.js";
 export function criaListaPessoas() {
     const td = document.getElementById('tbody');
-    pessoas.forEach((pessoa) => {
+    musica.pessoas.forEach((pessoa) => {
         td ? td.innerHTML += adicionaHtml(pessoa) : null;
     });
 }
 export function atualizarPessoas() {
-    pessoas.forEach((pessoa, index) => {
+    musica.pessoas.forEach((pessoa, index) => {
         const tr = document.getElementById('pessoa' + (index + 1));
         tr ? tr.innerHTML = adicionaHtml(pessoa) : null;
     });
+}
+export function alteraTempo() {
+    const element = document.getElementById(`tempo${musica.pessoaCantando.id}`);
+    if (element !== null) {
+        element.innerText = converterParaSegundos(musica.pessoaCantando.tempo.toString());
+    }
 }
 function adicionaHtml(pessoa) {
     return `

@@ -1,19 +1,27 @@
 
 import { Pessoa } from "../models/pessoa.js";
-import { pessoas } from "../util/dados.js";
+import { converterParaSegundos } from "../service/converterTempo.js";
+import { musica } from "../util/dados.js";
 
 export function criaListaPessoas(): void {
     const td = document.getElementById('tbody');
-    pessoas.forEach((pessoa: Pessoa) => {
+    musica.pessoas.forEach((pessoa: Pessoa) => {
         td?td.innerHTML += adicionaHtml(pessoa):null;
     })
 }
 
 export function atualizarPessoas(): void {
-    pessoas.forEach((pessoa: Pessoa, index: number) => {
+    musica.pessoas.forEach((pessoa: Pessoa, index: number) => {
         const tr = document.getElementById('pessoa' + (index + 1) );
         tr?tr.innerHTML = adicionaHtml(pessoa):null;
     });
+}
+
+export function alteraTempo(): void {
+    const element = document.getElementById(`tempo${musica.pessoaCantando.id}`);
+    if (element !== null) {
+        element.innerText = converterParaSegundos(musica.pessoaCantando.tempo.toString());
+    }
 }
 
 function adicionaHtml(pessoa: Pessoa): string {

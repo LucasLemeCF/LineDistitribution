@@ -6,6 +6,7 @@ export class Musica {
     private _tempoAtual: number;
     private _tempoFinal: number;
     private _momentoAtual: number;
+    private _pessoaCatanado: Pessoa;
     private _Pessoas: Pessoa[];
     private _Momentos: Momento[];
     
@@ -15,6 +16,7 @@ export class Musica {
         this._momentoAtual = 0;
         this._Pessoas = pessoas;
         this._Momentos = momentos;
+        this._pessoaCatanado = this._Pessoas[this._Momentos[this._momentoAtual].idPessoa - 1];
     }
 
     public incrementaTempoAtual(): void {
@@ -23,6 +25,16 @@ export class Musica {
 
     public incrementaMomentoAtual(): void {
         this._momentoAtual++;
+    }
+
+    public alteraPessoaCantando(): void {
+        if (this._momentoAtual < this._Momentos.length) {
+            this._pessoaCatanado = this.pessoas[this.momentos[this.momentoAtual].idPessoa - 1]
+        }
+    }
+
+    get pessoaPosicaoAcima(): Pessoa {
+        return this._Pessoas.find((pessoa: Pessoa) => pessoa.posicao + 1 == this.pessoaCantando.posicao);
     }
 
     get tempoAtual() {
@@ -35,6 +47,10 @@ export class Musica {
 
     get momentoAtual() {
         return this._momentoAtual;
+    }
+
+    get pessoaCantando(): Pessoa {
+        return this._pessoaCatanado;
     }
 
     get pessoas() {

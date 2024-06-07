@@ -1,15 +1,15 @@
 import { Pessoa } from "../models/pessoa.js";
-import { pessoas } from "../util/dados.js";
+import { musica } from "../util/dados.js";
 
-export function buscaPessoaPorId(id: number): Pessoa | null {
-    return pessoas.find((pessoa: Pessoa) => pessoa.id === id) || null;
+export function buscaPessoaPorId(id: number): Pessoa {
+    return musica.pessoas.find((pessoa: Pessoa) => pessoa.id == id);
 }
 
-export function buscaPessoaPosicaoAcima(posicaoAtual: number): Pessoa | null {
-    let posicaoAcima = posicaoAtual - 1;
-    let pessoaPosicaoAcima: Pessoa | null = null;
+export function buscaPessoaPosicaoAcima(pessoa: Pessoa): Pessoa {
+    let posicaoAcima = pessoa.posicao - 1;
+    let pessoaPosicaoAcima: Pessoa = null;
 
-    pessoas.forEach((pessoa: Pessoa) => {
+    musica.pessoas.forEach((pessoa: Pessoa) => {
         if (pessoa.posicao == posicaoAcima) {
             pessoaPosicaoAcima = pessoa;
         } 

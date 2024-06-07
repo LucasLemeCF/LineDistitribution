@@ -4,7 +4,15 @@ export class Pessoa {
         this._posicao = posicao;
         this._nome = nome;
         this._tempo = 0;
-        this._intervalId = 0;
+    }
+    incrementaTempo() {
+        this._tempo++;
+    }
+    subirPosicao() {
+        this._posicao--;
+    }
+    descerPosicao() {
+        this._posicao++;
     }
     get id() {
         return this._id;
@@ -18,16 +26,10 @@ export class Pessoa {
     get tempo() {
         return this._tempo;
     }
-    get intervalId() {
-        return this._intervalId;
-    }
     set posicao(posicao) {
         this._posicao = posicao;
     }
     set tempo(tempo) {
         this._tempo = tempo;
-    }
-    set intervalId(intervalId) {
-        this._intervalId = intervalId;
     }
 }

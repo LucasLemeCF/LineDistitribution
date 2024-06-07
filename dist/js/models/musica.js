@@ -6,12 +6,21 @@ export class Musica {
         this._momentoAtual = 0;
         this._Pessoas = pessoas;
         this._Momentos = momentos;
+        this._pessoaCatanado = this._Pessoas[this._Momentos[this._momentoAtual].idPessoa - 1];
     }
     incrementaTempoAtual() {
         this._tempoAtual++;
     }
     incrementaMomentoAtual() {
         this._momentoAtual++;
+    }
+    alteraPessoaCantando() {
+        if (this._momentoAtual < this._Momentos.length) {
+            this._pessoaCatanado = this.pessoas[this.momentos[this.momentoAtual].idPessoa - 1];
+        }
+    }
+    get pessoaPosicaoAcima() {
+        return this._Pessoas.find((pessoa) => pessoa.posicao + 1 == this.pessoaCantando.posicao);
     }
     get tempoAtual() {
         return this._tempoAtual;
@@ -21,6 +30,9 @@ export class Musica {
     }
     get momentoAtual() {
         return this._momentoAtual;
+    }
+    get pessoaCantando() {
+        return this._pessoaCatanado;
     }
     get pessoas() {
         return this._Pessoas;
