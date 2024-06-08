@@ -4,6 +4,7 @@ export class Pessoa {
         this._posicao = posicao;
         this._nome = nome;
         this._tempo = 0;
+        this._estaCantando = false;
     }
     incrementaTempo() {
         this._tempo++;
@@ -26,10 +27,13 @@ export class Pessoa {
     get tempo() {
         return this._tempo;
     }
-    set posicao(posicao) {
-        this._posicao = posicao;
+    get estaCantando() {
+        return this._estaCantando;
     }
     set tempo(tempo) {
         this._tempo = tempo;
+    }
+    set estaCantando(estaCantando) {
+        this._estaCantando = estaCantando;
     }
 }

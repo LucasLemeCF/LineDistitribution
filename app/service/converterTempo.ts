@@ -19,10 +19,17 @@ export function converterParaTempo(tempo: number) {
     const segundos = Math.floor(restoSegundos / 1000);
     const milisegundos = restoSegundos % 1000;
   
-    const minutosStr = minutos.toString();
-    const segundosStr = segundos.toString();
-    let milisegundosStr = (milisegundos / 10).toString();
+    let minutosStr = minutos.toString();
+    if (minutos < 10) {
+        minutosStr = '0' + minutosStr;
+    }
 
+    let segundosStr = segundos.toString();
+    if (segundos < 10) {
+        segundosStr = '0' + segundosStr;
+    }
+
+    let milisegundosStr = (milisegundos / 10).toString();
     if (milisegundosStr == "0") {
         milisegundosStr = '00';
     }

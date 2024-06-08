@@ -1,12 +1,10 @@
 import { paraDecimoDeSegundo } from "../service/converterTempo.js";
+import { pessoas } from "../util/dados.js";
 export class Musica {
-    constructor(tempoFinal, pessoas, momentos) {
+    constructor(tempoFinal) {
         this._tempoAtual = 0;
         this._tempoFinal = paraDecimoDeSegundo(tempoFinal);
         this._momentoAtual = 0;
-        this._Pessoas = pessoas;
-        this._Momentos = momentos;
-        this._pessoaCatanado = this._Pessoas[this._Momentos[this._momentoAtual].idPessoa - 1];
     }
     incrementaTempoAtual() {
         this._tempoAtual++;
@@ -14,13 +12,8 @@ export class Musica {
     incrementaMomentoAtual() {
         this._momentoAtual++;
     }
-    alteraPessoaCantando() {
-        if (this._momentoAtual < this._Momentos.length) {
-            this._pessoaCatanado = this.pessoas[this.momentos[this.momentoAtual].idPessoa - 1];
-        }
-    }
-    get pessoaPosicaoAcima() {
-        return this._Pessoas.find((pessoa) => pessoa.posicao + 1 == this.pessoaCantando.posicao);
+    pessoaCantando() {
+        return pessoas.find((pessoa) => pessoa.estaCantando == true);
     }
     get tempoAtual() {
         return this._tempoAtual;
@@ -31,15 +24,6 @@ export class Musica {
     get momentoAtual() {
         return this._momentoAtual;
     }
-    get pessoaCantando() {
-        return this._pessoaCatanado;
-    }
-    get pessoas() {
-        return this._Pessoas;
-    }
-    get momentos() {
-        return this._Momentos;
-    }
     set tempoAtual(tempoAtual) {
         this._tempoAtual = tempoAtual;
     }
@@ -48,11 +32,5 @@ export class Musica {
     }
     set momentoAtual(momentoAtual) {
         this._momentoAtual = momentoAtual;
-    }
-    set pessoas(pessoas) {
-        this._Pessoas = pessoas;
-    }
-    set momentos(momentos) {
-        this._Momentos = momentos;
     }
 }

@@ -1,12 +1,8 @@
 import { musica } from "../util/dados.js";
 export function controlarSubirPosicao() {
-    // console.log(musica.momentoAtual, musica.momentos.length)
-    // if (!acabouMomentos()) {
-    //     // console.log(musica.pessoaPosicaoAcima)
-    //     // if (cantorPassouPosicao()) {
-    //     //     // subirPosicao();
-    //     // }
-    // }
+    if (cantorPassouPosicao()) {
+        subirPosicao();
+    }
 }
 function acabouMomentos() {
     return musica.momentoAtual < musica.momentos.length;
@@ -15,11 +11,11 @@ function cantorPassouPosicao() {
     return musica.pessoaCantando.tempo > musica.pessoaPosicaoAcima.tempo;
 }
 function subirPosicao() {
-    // if (musica.pessoaCantando != undefined ) {
-    //     // console.log(musica.pessoaCantando);
-    //     // musica.pessoaCantando.setPosicao(musica.pessoaCantando.posicao - 1);   
-    // }
-    // musica.pessoaPosicaoAcima.descerPosicao();
+    if (musica.pessoaCantando != undefined) {
+        musica.pessoaPosicaoAcima.descerPosicao();
+        // musica.pessoaCantando.subirPosicao();
+        console.log(musica.pessoaCantando);
+    }
     // animarAtualizacao(idDivDescendo, idDivSubindo);
     // reorganizarPosPosicao();
     // atualizarPessoas();
