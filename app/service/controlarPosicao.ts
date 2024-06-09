@@ -1,6 +1,5 @@
 import { Pessoa } from "../models/pessoa.js";
 import { musica, pessoas } from "../util/dados.js";
-import { atualizarPessoas } from "../view/listaPessoas.js";
 
 export function controlarSubirPosicao(): void {
     if (cantorPassouPosicao()) {
@@ -23,16 +22,10 @@ function subirPosicao(): void {
     if (musica.pessoaCantando() !== undefined ) {
         pessoas.forEach((pessoa: Pessoa) => {
             if (pessoa.posicao > 0 && pessoa.posicao == musica.pessoaCantando().posicao) {
-                // const posicaoPessoaPosicaoAcima = pessoaPosicaoAcima().posicao;
-
                 pessoaPosicaoAcima().descerPosicao();
                 pessoa.subirPosicao();
-
-                // console.log(pessoa.nome + ' subiu e está em ' + pessoa.posicao + " lugar");
-               
-                animarAtualizacao(pessoa.posicao);
                 reorganizarPosPosicao();
-                atualizarPessoas();
+                animarAtualizacao(pessoa.posicao);
             }
         });
     }
@@ -44,17 +37,12 @@ function reorganizarPosPosicao(): void {
 }
 
 function animarAtualizacao(posicao: number): void {
-    const pessoaSubindo = document.getElementById("pessoa"+ (posicao-1).toString());
+    const pessoaSubindo = document.getElementById("pessoa"+ (posicao+1).toString());
     const pessoaDescendo = document.getElementById("pessoa"+ (posicao).toString());
 
-    console.log("pessoa subindo: "+ posicao.toString())
-    console.log("pessoa descendo: "+ (posicao-1).toString())
+    console.log("pessoa subindo: "+ (posicao+1).toString())
+    console.log("pessoa descendo: "+ (posicao).toString())
 
     pessoaSubindo?.classList.add('subindo');
     pessoaDescendo?.classList.add('descendo');
-
-    setTimeout(() => {
-        pessoaSubindo?.classList.remove('subindo');
-        pessoaDescendo?.classList.remove('descendo');
-    }, 100);
 }

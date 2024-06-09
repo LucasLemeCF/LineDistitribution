@@ -58,11 +58,11 @@ td {
 }
 
 .subindo {
-    animation: subir 0.5s ease-in-out forwards;
+    animation: subir 1s ease-in-out forwards;
 }
 
 .descendo {
-    animation: descer 0.5s ease-in-out forwards;
+    animation: descer 1s ease-in-out forwards;
 }
 
 @keyframes subir {
@@ -72,7 +72,7 @@ td {
     }
 
     100% {
-        transform: translateY(45px);
+        transform: translateY(-45px);
         opacity: 1;
     }
 }
@@ -84,7 +84,7 @@ td {
     }
 
     100% {
-        transform: translateY(-45px);
+        transform: translateY(45px);
         opacity: 1;
     }
 }

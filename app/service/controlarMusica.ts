@@ -1,4 +1,5 @@
 import { musica, pessoas } from '../util/dados.js';
+import { atualizarPessoas } from '../view/listaPessoas.js';
 import { adicionaTempoMusica } from '../view/tempoMusica.js';
 import { controlarCronometro } from './controlarCronometro.js';
 import { controlarSubirPosicao } from './controlarPosicao.js';
@@ -6,6 +7,8 @@ import { controlarSubirPosicao } from './controlarPosicao.js';
 export function iniciarMusica(): void {
     const intervalId = setInterval(() => {
         if (!finalizaMusica(intervalId)) {
+            atualizarPessoas();
+            removeAnimacoes();
             adicionaTempoMusica();
             controlarCronometro();
             controlarSubirPosicao();
@@ -13,7 +16,7 @@ export function iniciarMusica(): void {
 
         musica.incrementaTempoAtual();
         
-    }, 100);
+    }, 1000);
 }
 
 function finalizaMusica(intervalId: number): Boolean {
@@ -34,4 +37,12 @@ function resultadoFinal(): void {
     });
     console.log(pessoas);
     
+}
+
+function removeAnimacoes(): void {
+    pessoas.forEach((pessoa) => {
+        const div = document.getElementById("pessoa"+ (pessoa.posicao).toString());
+        div?.classList.remove('subindo');
+        div?.classList.remove('descendo');
+    });
 }
