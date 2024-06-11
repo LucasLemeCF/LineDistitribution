@@ -1,6 +1,7 @@
 import { momentos, musica, pessoas } from "../util/dados.js";
-import { alteraTempo } from "../view/listaPessoas.js";
+import { adicionaTempoMusica, alteraTempoPessoa } from "../view/tempoMusica.js";
 export function controlarCronometro() {
+    adicionaTempoMusica();
     pessoas.forEach(pessoa => {
         if (naoAcabouMomento()) {
             alteraPessoaCantando(pessoa);
@@ -16,18 +17,16 @@ function naoAcabouMomento() {
 }
 function alteraPessoaCantando(pessoa) {
     if (comecouCantar(pessoa)) {
-        console.log(pessoa.nome + ' começou a cantar em ' + pessoa.posicao + " lugar");
         pessoa.estaCantando = true;
     }
     if (terminouCantar(pessoa)) {
-        console.log(pessoa.nome + ' parou de cantar em ' + pessoa.posicao + " lugar");
         pessoa.estaCantando = false;
     }
 }
 function incrementaTempo(pessoa) {
     if (pessoa.estaCantando) {
         pessoa.incrementaTempo();
-        alteraTempo();
+        alteraTempoPessoa();
     }
 }
 function comecouCantar(pessoa) {

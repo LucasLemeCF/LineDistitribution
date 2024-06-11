@@ -5,6 +5,9 @@ export class Pessoa {
         this._nome = nome;
         this._tempo = 0;
         this._estaCantando = false;
+        this._filaAnimacao = 0;
+        this._tempoProximaAnimacao = 0;
+        this._posicaoAnimacao = posicao;
     }
     incrementaTempo() {
         this._tempo++;
@@ -14,6 +17,12 @@ export class Pessoa {
     }
     descerPosicao() {
         this._posicao++;
+    }
+    subirPosicaoAnimacao() {
+        this._posicaoAnimacao--;
+    }
+    descerPosicaoAnimacao() {
+        this._posicaoAnimacao++;
     }
     get id() {
         return this._id;
@@ -30,10 +39,25 @@ export class Pessoa {
     get estaCantando() {
         return this._estaCantando;
     }
+    get filaAnimacao() {
+        return this._filaAnimacao;
+    }
+    get tempoProximaAnimacao() {
+        return this._tempoProximaAnimacao;
+    }
+    get posicaoAnimacao() {
+        return this._posicaoAnimacao;
+    }
     set tempo(tempo) {
         this._tempo = tempo;
     }
     set estaCantando(estaCantando) {
         this._estaCantando = estaCantando;
+    }
+    set tempoProximaAnimacao(tempoProximaAnimacao) {
+        this._tempoProximaAnimacao = tempoProximaAnimacao;
+    }
+    set filaAnimacao(animacao) {
+        this._filaAnimacao = animacao;
     }
 }

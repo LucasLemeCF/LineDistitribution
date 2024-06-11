@@ -1,8 +1,13 @@
 export function paraDecimoDeSegundo(tempo) {
     const [minutos, segundos, milisegundos] = tempo.split(':');
-    return ((parseInt(minutos) * 60 + parseInt(segundos)) * 1000 + parseInt(milisegundos)) / 100;
+    // console.log("Tempo: " + tempo 
+    //     + " minutos: " + (parseInt(minutos) * 600) 
+    //     + " segundos: " + (parseInt(segundos) * 10) 
+    //     + " milisegundos: " + ((parseInt(milisegundos))/6));
+    return ((parseInt(minutos) * 600) + (parseInt(segundos) * 10) + (parseInt(milisegundos)) / 6);
 }
-export function converterParaSegundos(tempo) {
+export function converterParaSegundos(tempoNumber) {
+    let tempo = tempoNumber.toString();
     let result = tempo.slice(0, -1) + '.' + tempo.slice(-1);
     if (Number(tempo.slice(0, -1)) < 1) {
         result = '0' + result;

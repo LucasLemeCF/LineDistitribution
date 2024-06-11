@@ -1,8 +1,9 @@
 import { Pessoa } from "../models/pessoa.js";
 import { momentos, musica, pessoas } from "../util/dados.js";
-import { alteraTempo } from "../view/listaPessoas.js";
+import { adicionaTempoMusica, alteraTempoPessoa } from "../view/tempoMusica.js";
 
 export function controlarCronometro(): void {
+    adicionaTempoMusica();
 
     pessoas.forEach(pessoa => {
         if(naoAcabouMomento()) {
@@ -23,12 +24,10 @@ function naoAcabouMomento(): Boolean {
 
 function alteraPessoaCantando(pessoa: Pessoa): void {
     if (comecouCantar(pessoa)) {
-        console.log(pessoa.nome + ' começou a cantar em ' + pessoa.posicao + " lugar");
         pessoa.estaCantando = true;
     }
 
     if (terminouCantar(pessoa)) {
-        console.log(pessoa.nome + ' parou de cantar em ' + pessoa.posicao + " lugar");
         pessoa.estaCantando = false;
     } 
 }
@@ -36,7 +35,7 @@ function alteraPessoaCantando(pessoa: Pessoa): void {
 function incrementaTempo(pessoa: Pessoa): void {
     if (pessoa.estaCantando) {
         pessoa.incrementaTempo();
-        alteraTempo();
+        alteraTempoPessoa();
     }
 }
 
@@ -49,7 +48,7 @@ function pessoaCantando(pessoa: Pessoa): Boolean {
 }
 
 function terminouCantar(pessoa: Pessoa): Boolean {
-    return musica.tempoAtual == momentos[musica.momentoAtual].fim && pessoaCantando(pessoa)
+    return musica.tempoAtual == momentos[musica.momentoAtual].fim && pessoaCantando(pessoa);
 }
 
 function acabouMomento(): Boolean {

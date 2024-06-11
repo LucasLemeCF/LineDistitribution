@@ -5,33 +5,33 @@ export function controlarSubirPosicao() {
     }
 }
 function cantorPassouPosicao() {
-    if (musica.pessoaCantando() !== undefined && pessoaPosicaoAcima() !== undefined) {
+    if (temAlguemCantando() && posicaoAcimaExiste()) {
         return musica.pessoaCantando().tempo > pessoaPosicaoAcima().tempo;
     }
+}
+function temAlguemCantando() {
+    return musica.pessoaCantando() !== undefined;
+}
+function posicaoAcimaExiste() {
+    return pessoaPosicaoAcima() !== undefined;
 }
 function pessoaPosicaoAcima() {
     return pessoas.find((pessoa) => pessoa.posicao + 1 == musica.pessoaCantando().posicao);
 }
 function subirPosicao() {
-    if (musica.pessoaCantando() !== undefined) {
+    if (temAlguemCantando()) {
         pessoas.forEach((pessoa) => {
-            if (pessoa.posicao > 0 && pessoa.posicao == musica.pessoaCantando().posicao) {
+            if (posicaoExiste(pessoa) && estaCantando(pessoa)) {
                 pessoaPosicaoAcima().descerPosicao();
                 pessoa.subirPosicao();
-                reorganizarPosPosicao();
-                animarAtualizacao(pessoa.posicao);
+                pessoa.filaAnimacao++;
             }
         });
     }
 }
-function reorganizarPosPosicao() {
-    pessoas.sort((a, b) => a.posicao - b.posicao);
+function posicaoExiste(pessoa) {
+    return pessoa.posicao > 0;
 }
-function animarAtualizacao(posicao) {
-    const pessoaSubindo = document.getElementById("pessoa" + (posicao + 1).toString());
-    const pessoaDescendo = document.getElementById("pessoa" + (posicao).toString());
-    console.log("pessoa subindo: " + (posicao + 1).toString());
-    console.log("pessoa descendo: " + (posicao).toString());
-    pessoaSubindo?.classList.add('subindo');
-    pessoaDescendo?.classList.add('descendo');
+function estaCantando(pessoa) {
+    return pessoa.posicao == musica.pessoaCantando().posicao;
 }

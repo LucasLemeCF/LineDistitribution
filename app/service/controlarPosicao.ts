@@ -8,9 +8,17 @@ export function controlarSubirPosicao(): void {
 }
 
 function cantorPassouPosicao(): Boolean {
-    if (musica.pessoaCantando() !== undefined && pessoaPosicaoAcima() !== undefined) {
-        return musica.pessoaCantando().tempo >pessoaPosicaoAcima().tempo;
+    if (temAlguemCantando() && posicaoAcimaExiste()) {
+        return musica.pessoaCantando().tempo > pessoaPosicaoAcima().tempo;
     }
+}
+
+function temAlguemCantando(): Boolean {
+    return musica.pessoaCantando() !== undefined;
+}
+
+function posicaoAcimaExiste(): Boolean {
+    return pessoaPosicaoAcima() !== undefined;
 }
 
 function pessoaPosicaoAcima(): Pessoa {
@@ -19,30 +27,24 @@ function pessoaPosicaoAcima(): Pessoa {
 
 function subirPosicao(): void {
 
-    if (musica.pessoaCantando() !== undefined ) {
+    if (temAlguemCantando()) {
         pessoas.forEach((pessoa: Pessoa) => {
-            if (pessoa.posicao > 0 && pessoa.posicao == musica.pessoaCantando().posicao) {
+            if (posicaoExiste(pessoa) && estaCantando(pessoa)) {
+                
                 pessoaPosicaoAcima().descerPosicao();
                 pessoa.subirPosicao();
-                reorganizarPosPosicao();
-                animarAtualizacao(pessoa.posicao);
+               
+                pessoa.filaAnimacao++;
             }
         });
     }
 
 }
 
-function reorganizarPosPosicao(): void {
-    pessoas.sort((a: Pessoa, b: Pessoa) => a.posicao - b.posicao);
+function posicaoExiste(pessoa: Pessoa): Boolean {
+    return pessoa.posicao > 0;
 }
 
-function animarAtualizacao(posicao: number): void {
-    const pessoaSubindo = document.getElementById("pessoa"+ (posicao+1).toString());
-    const pessoaDescendo = document.getElementById("pessoa"+ (posicao).toString());
-
-    console.log("pessoa subindo: "+ (posicao+1).toString())
-    console.log("pessoa descendo: "+ (posicao).toString())
-
-    pessoaSubindo?.classList.add('subindo');
-    pessoaDescendo?.classList.add('descendo');
+function estaCantando(pessoa: Pessoa): Boolean {
+    return pessoa.posicao == musica.pessoaCantando().posicao;
 }
