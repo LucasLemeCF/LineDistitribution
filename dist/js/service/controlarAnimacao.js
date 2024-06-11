@@ -1,23 +1,25 @@
-import { pessoas } from "../util/dados.js";
+import { musica, pessoas } from "../util/dados.js";
 import { atualizarPessoaDescendo, atualizarPessoaSubindo } from "../view/listaPessoas.js";
-export function iniciaAnimacao() {
-    pessoas.forEach((pessoa) => {
-        setInterval(() => {
-            if (temAnimacaoNaFila(pessoa) && prontoParaProximaAnimacao(pessoa)) {
-                animar(pessoa);
-                pessoa.filaAnimacao--;
-                pessoa.tempoProximaAnimacao = 11;
-            }
-            else if (naoTerminouTempoAnimacao(pessoa)) {
-                pessoa.tempoProximaAnimacao--;
-            }
-            if (pessoa.tempoProximaAnimacao == 1) {
-                alterarPosicoes(pessoa);
-                mostrarLog(pessoa);
-                removeAnimacaoAnterior(pessoa.posicaoAnimacao);
-            }
-        }, 100);
-    });
+export function iniciarAnimacao() {
+    if (temAnimacaoNaFila()) {
+        const pessoa = musica.filaAnimacao[0];
+        if (musica.tempoProximaAnimacao == 0) {
+            animar(pessoa);
+            musica.tempoProximaAnimacao = 10;
+        }
+        else if (musica.tempoProximaAnimacao > 0) {
+            musica.tempoProximaAnimacao--;
+        }
+        if (musica.tempoProximaAnimacao == 1) {
+            alterarPosicoes(pessoa);
+            mostrarLog(pessoa);
+            musica.filaAnimacao.shift();
+            removeAnimacaoAnterior(pessoa.posicaoAnimacao);
+        }
+    }
+}
+function temAnimacaoNaFila() {
+    return musica.filaAnimacao.length > 0;
 }
 function alterarPosicoes(pessoa) {
     atualizarPessoaDescendo(pessoaPosicaoAcima(pessoa.posicaoAnimacao));
@@ -37,22 +39,23 @@ function mostrarLog(pessoa) {
     });
     console.log("-");
 }
-function temAnimacaoNaFila(pessoa) {
-    return pessoa.filaAnimacao > 0;
-}
-function prontoParaProximaAnimacao(pessoa) {
-    return pessoa.tempoProximaAnimacao == 0;
-}
 function animar(pessoa) {
     const divPessoaSubindo = document.getElementById("pessoa" + (pessoa.posicaoAnimacao).toString());
-    // const divPessoaDescendo = document.getElementById("pessoa" + (pessoa.posicaoAnimacao-1).toString());
-    divPessoaSubindo?.classList.add(('subindo').toString());
-    // divPessoaDescendo?.classList.add(('descendo').toString());
+    divPessoaSubindo?.classList.add('subindo');
+    const divPessoaDescendo = document.getElementById("pessoa" + (pessoa.posicaoAnimacao - 1).toString());
+    divPessoaDescendo?.classList.add('descendo');
+    const borda = document.getElementById("img" + (pessoa.id).toString());
+    borda?.classList.add('borda');
 }
 function removeAnimacaoAnterior(posicaoAnimacao) {
-    const div = document.getElementById("pessoa" + (posicaoAnimacao + 1).toString());
-    div?.classList.remove('subindo');
-    div?.classList.remove('descendo');
+    const subindo = document.getElementById("pessoa" + (posicaoAnimacao + 1).toString());
+    subindo?.classList.remove('subindo');
+    subindo?.classList.remove('descendo');
+    const descendo = document.getElementById("pessoa" + (posicaoAnimacao).toString());
+    descendo?.classList.remove('subindo');
+    descendo?.classList.remove('descendo');
+    const borda = document.getElementById("img" + (posicaoAnimacao + 1).toString());
+    borda?.classList.remove('borda');
 }
 export function removerTodasAnimacoes() {
     pessoas.forEach((pessoa) => {
@@ -63,7 +66,4 @@ export function removerTodasAnimacoes() {
 }
 function pessoaPosicaoAcima(posicaoBuscada) {
     return pessoas.find((pessoa) => pessoa.posicaoAnimacao == posicaoBuscada - 1);
-}
-function naoTerminouTempoAnimacao(pessoa) {
-    return pessoa.tempoProximaAnimacao > 0;
 }

@@ -19,7 +19,6 @@ export function controlarCronometro(): void {
 
 function naoAcabouMomento(): Boolean {
     return musica.momentoAtual < momentos.length;
-
 }
 
 function alteraPessoaCantando(pessoa: Pessoa): void {

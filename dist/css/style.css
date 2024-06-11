@@ -97,6 +97,12 @@ td {
     margin-top: 5px;
 }
 
+.borda {
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+}
+
 .buttonIcon {
     width: 15px;
     height: 15px;

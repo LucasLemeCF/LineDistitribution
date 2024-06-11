@@ -5,6 +5,8 @@ export class Musica {
         this._tempoAtual = 0;
         this._tempoFinal = paraDecimoDeSegundo(tempoFinal);
         this._momentoAtual = 0;
+        this._filaAnimacao = [];
+        this._tempoProximaAnimacao = 0;
     }
     incrementaTempoAtual() {
         this._tempoAtual++;
@@ -15,6 +17,12 @@ export class Musica {
     pessoaCantando() {
         return pessoas.find((pessoa) => pessoa.estaCantando == true);
     }
+    adicionaFilaAnimacao(pessoa) {
+        this._filaAnimacao.push(pessoa);
+    }
+    removeFilaAnimacao() {
+        this._filaAnimacao.shift();
+    }
     get tempoAtual() {
         return this._tempoAtual;
     }
@@ -24,6 +32,12 @@ export class Musica {
     get momentoAtual() {
         return this._momentoAtual;
     }
+    get filaAnimacao() {
+        return this._filaAnimacao;
+    }
+    get tempoProximaAnimacao() {
+        return this._tempoProximaAnimacao;
+    }
     set tempoAtual(tempoAtual) {
         this._tempoAtual = tempoAtual;
     }
@@ -32,5 +46,8 @@ export class Musica {
     }
     set momentoAtual(momentoAtual) {
         this._momentoAtual = momentoAtual;
+    }
+    set tempoProximaAnimacao(tempoProximaAnimacao) {
+        this._tempoProximaAnimacao = tempoProximaAnimacao;
     }
 }

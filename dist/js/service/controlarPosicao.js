@@ -19,15 +19,13 @@ function pessoaPosicaoAcima() {
     return pessoas.find((pessoa) => pessoa.posicao + 1 == musica.pessoaCantando().posicao);
 }
 function subirPosicao() {
-    if (temAlguemCantando()) {
-        pessoas.forEach((pessoa) => {
-            if (posicaoExiste(pessoa) && estaCantando(pessoa)) {
-                pessoaPosicaoAcima().descerPosicao();
-                pessoa.subirPosicao();
-                pessoa.filaAnimacao++;
-            }
-        });
-    }
+    pessoas.forEach((pessoa) => {
+        if (posicaoExiste(pessoa) && estaCantando(pessoa)) {
+            pessoaPosicaoAcima().descerPosicao();
+            pessoa.subirPosicao();
+            musica.adicionaFilaAnimacao(pessoa);
+        }
+    });
 }
 function posicaoExiste(pessoa) {
     return pessoa.posicao > 0;

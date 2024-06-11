@@ -15,8 +15,9 @@ export var pessoas: Pessoa[] = [
 // (Numero da posição inicial, Tempo no formato MM:SS:MS)
 export var momentos: Momento[] = [
     new Momento(5, '00:00:00', '00:01:30'),
-    // new Momento(2, '00:02:00', '00:02:30'),
-    // new Momento(6, '00:05:00', '00:05:30'),
+    new Momento(2, '00:02:00', '00:02:30'),
+    new Momento(6, '00:04:00', '00:04:30'),
+    new Momento(4, '00:07:00', '00:08:00'),     
 ]
 
-export var musica = new Musica('00:07:00')
+export var musica = new Musica('00:15:00')

@@ -5,7 +5,6 @@ export class Pessoa {
         this._nome = nome;
         this._tempo = 0;
         this._estaCantando = false;
-        this._filaAnimacao = 0;
         this._tempoProximaAnimacao = 0;
         this._posicaoAnimacao = posicao;
     }
@@ -39,9 +38,6 @@ export class Pessoa {
     get estaCantando() {
         return this._estaCantando;
     }
-    get filaAnimacao() {
-        return this._filaAnimacao;
-    }
     get tempoProximaAnimacao() {
         return this._tempoProximaAnimacao;
     }
@@ -56,8 +52,5 @@ export class Pessoa {
     }
     set tempoProximaAnimacao(tempoProximaAnimacao) {
         this._tempoProximaAnimacao = tempoProximaAnimacao;
-    }
-    set filaAnimacao(animacao) {
-        this._filaAnimacao = animacao;
     }
 }

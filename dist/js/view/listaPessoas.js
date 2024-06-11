@@ -30,7 +30,7 @@ export function atualizarPessoaDescendo(pessoa) {
 function adicionaPessoa(pessoa) {
     return `
         <td>
-            <img class="foto" src="../img/${pessoa.nome}.jpeg">
+            <img id="img${pessoa.id}" class="foto" src="../img/${pessoa.nome}.jpeg">
         </td>
         <td>
             <div class="item">

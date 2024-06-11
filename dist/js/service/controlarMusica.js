@@ -1,5 +1,6 @@
 import { musica, pessoas } from '../util/dados.js';
 import { adicionaTempoMusica } from '../view/tempoMusica.js';
+import { iniciarAnimacao } from './controlarAnimacao.js';
 import { controlarCronometro } from './controlarCronometro.js';
 import { controlarSubirPosicao } from './controlarPosicao.js';
 export function iniciarMusica() {
@@ -8,6 +9,7 @@ export function iniciarMusica() {
             controlarCronometro();
             controlarSubirPosicao();
         }
+        iniciarAnimacao();
         musica.incrementaTempoAtual();
     }, 100);
 }
@@ -24,12 +26,22 @@ function finalizaMusica(intervalId) {
 }
 function resultadoFinal() {
     console.log('Fim da música');
-    organizaPosicao();
+    // organizaPosicao();
     pessoas.forEach((pessoa) => {
         console.log(pessoa.posicao + "º lugar " + pessoa.nome);
     });
     console.log(pessoas);
+    removeTodasAnimacoes();
 }
 function organizaPosicao() {
     pessoas.sort((a, b) => a.posicao - b.posicao);
+}
+function removeTodasAnimacoes() {
+    pessoas.forEach((pessoa) => {
+        const subindo = document.getElementById("pessoa" + (pessoa.id).toString());
+        subindo?.classList.remove('subindo');
+        subindo?.classList.remove('descendo');
+        const borda = document.getElementById("img" + (pessoa.id).toString());
+        borda?.classList.remove('borda');
+    });
 }

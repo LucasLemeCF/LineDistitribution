@@ -26,19 +26,13 @@ function pessoaPosicaoAcima(): Pessoa {
 }
 
 function subirPosicao(): void {
-
-    if (temAlguemCantando()) {
-        pessoas.forEach((pessoa: Pessoa) => {
-            if (posicaoExiste(pessoa) && estaCantando(pessoa)) {
-                
-                pessoaPosicaoAcima().descerPosicao();
-                pessoa.subirPosicao();
-               
-                pessoa.filaAnimacao++;
-            }
-        });
-    }
-
+    pessoas.forEach((pessoa: Pessoa) => {
+        if (posicaoExiste(pessoa) && estaCantando(pessoa)) {
+            pessoaPosicaoAcima().descerPosicao();
+            pessoa.subirPosicao();
+            musica.adicionaFilaAnimacao(pessoa);
+        }
+    });
 }
 
 function posicaoExiste(pessoa: Pessoa): Boolean {
