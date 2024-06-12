@@ -3,9 +3,6 @@ import { musica, pessoas } from "../util/dados.js";
 import { atualizarPessoaDescendo, atualizarPessoaSubindo } from "../view/listaPessoas.js";
 
 export function iniciarAnimacao(): void { 
-    // adicionarBorda();
-    // removerBorda();
-
     if (temAnimacaoNaFila()) {
         const pessoa = musica.filaAnimacao[0];
 
@@ -18,7 +15,6 @@ export function iniciarAnimacao(): void {
 
         if (musica.tempoProximaAnimacao == 1) {
             alterarPosicoes(pessoa);
-            mostrarLog(pessoa);
             musica.filaAnimacao.shift();
             removeAnimacaoAnterior(pessoa.posicaoAnimacao);
         }
@@ -37,19 +33,6 @@ function alterarPosicoes(pessoa: Pessoa): void {
         pessoaPosicaoAcima(pessoa.posicaoAnimacao).descerPosicaoAnimacao();
         pessoa.subirPosicaoAnimacao();
     }
-}
-
-function mostrarLog(pessoa: Pessoa): void {
-    if (pessoaPosicaoAcima(pessoa.posicaoAnimacao) != undefined) {
-        console.log("Acima: " + pessoaPosicaoAcima(pessoa.posicaoAnimacao).nome);
-    }
-    console.log("Abaixo: " + pessoa.nome);
-
-    pessoas.forEach((pessoa) => {
-        console.log(pessoa.nome + ": " + pessoa.posicaoAnimacao);
-    });
-
-    console.log("-");
 }
 
 function animar(pessoa: Pessoa): void {

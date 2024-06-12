@@ -1,18 +1,17 @@
 @import url('https://fonts.cdnfonts.com/css/lemonmilk');
 
 body {
-    background-color: #0EF502;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Lemon/Milk', sans-serif;
-    font-family: 'Lemon/Milk light', sans-serif;
-    font-weight: bold;
-    color: white;
+}
+
+#body {
+    background-color: #0EF502;
 }
 
 #container {
-    width: 250px;
+    width: 300px;
 }
 
 #containerTempo {
@@ -27,10 +26,14 @@ body {
     margin: 0 5px;
     text-align: right;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
 }
 
 #tempoMusica {
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
 }
 
 #tbody {
@@ -44,17 +47,16 @@ body {
 
 .item {
     margin-left: 10px;
+    font-family: 'Lemon/Milk', sans-serif;
+    font-family: 'Lemon/Milk light', sans-serif;
+    font-weight: bold;
+    color: white;
 }
 
 .tempo {
     margin-top: -5px;
     margin-left: 5px;
     font-size: 11px;
-}
-
-th,
-td {
-    align-content: center;
 }
 
 .subindo {
@@ -90,17 +92,14 @@ td {
 }
 
 .foto {
-    border-radius: 50%;
     width: 40px;
     height: 40px;
-    margin-left: 20px;
-    margin-top: 5px;
 }
 
 .borda {
     border-style: solid;
-    border-width: 3px;
     border-color: red;
+    border-width: 3px;
 }
 
 .buttonIcon {
@@ -115,7 +114,6 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s;
     margin-left: 15px;
@@ -125,4 +123,10 @@ button {
 
 button:hover {
     background-color: blueviolet;
+}
+
+.progressBar {
+    height: 10px;
+    border-radius: 3px;
+    background-color: white;
 }

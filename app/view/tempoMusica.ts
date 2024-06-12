@@ -1,5 +1,5 @@
 import { Pessoa } from "../models/pessoa.js";
-import { converterParaSegundos, converterParaTempo } from "../service/converterTempo.js";
+import { caluculaTamanhoBarra, converterParaSegundos, converterParaTempo } from "../service/converterTempo.js";
 import { musica } from "../util/dados.js";
 
 export function adicionaTempoMusica(): void {
@@ -17,8 +17,14 @@ export function alteraTempoPessoa(): void {
     }
 }
 
+export function alteraBarraPessoa(): void {
+    const element = document.getElementById(`bar${musica.pessoaCantando().id}`);
+    if (element !== null) {
+        element.innerHTML = `<div class="progressBar" style="width: ${caluculaTamanhoBarra(musica.pessoaCantando().tempo)}%"></div>`;
+    }
+}
+
 export function adicionarBorda(pessoa: Pessoa): void {
-    console.log(musica.pessoaCantando().id)
     const borda = document.getElementById(`img${pessoa.id}`);
     borda?.classList.add('borda');
 }
@@ -27,14 +33,3 @@ export function removerBorda(pessoa: Pessoa): void {
     const borda = document.getElementById(`img${pessoa.id}`);
     borda?.classList.remove('borda');
 }
-
-// export function adicionarBorda(): void {
-//     console.log(musica.pessoaCantando().id)
-//     const borda = document.getElementById(`img${musica.pessoaCantando().id}`);
-//     borda?.classList.add('borda');
-// }
-
-// export function removerBorda(): void {
-//     const borda = document.getElementById(`img${musica.pessoaCantando().id}`);
-//     borda?.classList.remove('borda');
-// }

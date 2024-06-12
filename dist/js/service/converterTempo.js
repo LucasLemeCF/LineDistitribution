@@ -1,9 +1,6 @@
+import { musica } from "../util/dados.js";
 export function paraDecimoDeSegundo(tempo) {
     const [minutos, segundos, milisegundos] = tempo.split(':');
-    // console.log("Tempo: " + tempo 
-    //     + " minutos: " + (parseInt(minutos) * 600) 
-    //     + " segundos: " + (parseInt(segundos) * 10) 
-    //     + " milisegundos: " + ((parseInt(milisegundos))/6));
     return ((parseInt(minutos) * 600) + (parseInt(segundos) * 10) + (parseInt(milisegundos)) / 6);
 }
 export function converterParaSegundos(tempoNumber) {
@@ -33,4 +30,14 @@ export function converterParaTempo(tempo) {
         milisegundosStr = '00';
     }
     return `${minutosStr}:${segundosStr}:${milisegundosStr}`;
+}
+export function caluculaTamanhoBarra(tempoAtual) {
+    let resultado;
+    if (tempoAtual == 0) {
+        resultado = 0;
+    }
+    else {
+        resultado = (tempoAtual / musica.tempoFinal) * 100;
+    }
+    return resultado;
 }

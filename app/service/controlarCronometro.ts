@@ -1,6 +1,6 @@
 import { Pessoa } from "../models/pessoa.js";
 import { momentos, musica, pessoas } from "../util/dados.js";
-import { adicionaTempoMusica, adicionarBorda, alteraTempoPessoa, removerBorda } from "../view/tempoMusica.js";
+import { adicionaTempoMusica, adicionarBorda, alteraBarraPessoa, alteraTempoPessoa, removerBorda } from "../view/tempoMusica.js";
 
 export function controlarCronometro(): void {
     adicionaTempoMusica();
@@ -37,6 +37,7 @@ function incrementaTempo(pessoa: Pessoa): void {
     if (pessoa.estaCantando) {
         pessoa.incrementaTempo();
         alteraTempoPessoa();
+        alteraBarraPessoa();
     }
 }
 

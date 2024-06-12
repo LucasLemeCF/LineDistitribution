@@ -1,4 +1,4 @@
-import { converterParaSegundos } from "../service/converterTempo.js";
+import { caluculaTamanhoBarra, converterParaSegundos } from "../service/converterTempo.js";
 import { pessoas } from "../util/dados.js";
 export function criaListaPessoas() {
     const td = document.getElementById('tbody');
@@ -6,38 +6,39 @@ export function criaListaPessoas() {
         td ? td.innerHTML += adicionaHtml(pessoa) : null;
     });
 }
-// export function atualizarPessoas(): void {
-//     pessoas.forEach((pessoa: Pessoa, index: number) => {
-//         const tr = document.getElementById('pessoa' + (index + 1) );
-//         tr?tr.innerHTML = adicionaHtml(pessoa):null;
-//     });
-// }
 function adicionaHtml(pessoa) {
     return `
-    <div class="linha" id="pessoa${pessoa.posicao}">
+    <div class="linha col align-items-center container" id="pessoa${pessoa.posicao}">
         ` + adicionaPessoa(pessoa) + `
     </div>
     `;
 }
 export function atualizarPessoaSubindo(pessoa) {
-    const tr = document.getElementById('pessoa' + (pessoa.posicaoAnimacao - 1));
-    tr ? tr.innerHTML = adicionaPessoa(pessoa) : null;
+    atualizarPessoa(pessoa, -1);
 }
 export function atualizarPessoaDescendo(pessoa) {
-    const tr = document.getElementById('pessoa' + (pessoa.posicaoAnimacao + 1));
+    atualizarPessoa(pessoa, 1);
+}
+function atualizarPessoa(pessoa, movimento) {
+    const tr = document.getElementById('pessoa' + (pessoa.posicaoAnimacao + movimento));
     tr ? tr.innerHTML = adicionaPessoa(pessoa) : null;
 }
 function adicionaPessoa(pessoa) {
     let borda = pessoa.estaCantando ? 'borda' : '';
     return `
-        <td>
-            <img id="img${pessoa.id}" class="foto ${borda}" src="../img/${pessoa.nome}.jpeg">
-        </td>
-        <td>
+        <div class="col-3">
+            <img id="img${pessoa.id}" class="foto ${borda} rounded-circle mt-1 float-end" src="../img/${pessoa.nome}.jpeg">
+        </div>
+        <div class="col-3">
             <div class="item">
                 <div>${pessoa.nome}</div>
                 <div class="tempo" id="tempo${pessoa.id}">${converterParaSegundos(pessoa.tempo)}</div>
             </div>
-        </td>
+        </div>
+        <div class="col-6">
+            <div id="bar${pessoa.id}">
+                <div class="progressBar" style="width: ${caluculaTamanhoBarra(pessoa.tempo)}%"></div>
+            </div>
+        </div>
     `;
 }

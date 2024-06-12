@@ -41,7 +41,5 @@ function removeTodasAnimacoes() {
         const subindo = document.getElementById("pessoa" + (pessoa.id).toString());
         subindo?.classList.remove('subindo');
         subindo?.classList.remove('descendo');
-        // const borda = document.getElementById("img" + (pessoa.id).toString());
-        // borda?.classList.remove('borda');
     });
 }

@@ -1,5 +1,5 @@
 import { momentos, musica, pessoas } from "../util/dados.js";
-import { adicionaTempoMusica, adicionarBorda, alteraTempoPessoa, removerBorda } from "../view/tempoMusica.js";
+import { adicionaTempoMusica, adicionarBorda, alteraBarraPessoa, alteraTempoPessoa, removerBorda } from "../view/tempoMusica.js";
 export function controlarCronometro() {
     adicionaTempoMusica();
     pessoas.forEach(pessoa => {
@@ -29,6 +29,7 @@ function incrementaTempo(pessoa) {
     if (pessoa.estaCantando) {
         pessoa.incrementaTempo();
         alteraTempoPessoa();
+        alteraBarraPessoa();
     }
 }
 function comecouCantar(pessoa) {
