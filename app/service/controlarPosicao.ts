@@ -9,6 +9,10 @@ export function controlarSubirPosicao(): void {
 
 function cantorPassouPosicao(): Boolean {
     if (temAlguemCantando() && posicaoAcimaExiste()) {
+        if(musica.pessoaCantando().id == 5) {
+             console.log(musica.pessoaCantando().tempo, pessoaPosicaoAcima().nome);
+        }
+       
         return musica.pessoaCantando().tempo > pessoaPosicaoAcima().tempo;
     }
 }

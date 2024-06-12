@@ -2,7 +2,8 @@ import { musica } from "../util/dados.js";
 
 export function paraDecimoDeSegundo(tempo: string): number{
     const [minutos, segundos, milisegundos] = tempo.split(':');
-    return ((parseInt(minutos) * 600) + (parseInt(segundos) * 10) + (parseInt(milisegundos))/6);
+    const tempoEmDecimosDeSegundo = ((parseInt(minutos) * 600) + (parseInt(segundos) * 10) + (parseInt(milisegundos))/6);
+    return Math.floor(tempoEmDecimosDeSegundo);
 }
 
 export function converterParaSegundos(tempoNumber: number): string {
