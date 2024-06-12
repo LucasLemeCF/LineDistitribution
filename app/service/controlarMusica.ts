@@ -32,7 +32,7 @@ function finalizaMusica(intervalId: number): Boolean {
 
 function resultadoFinal(): void {
     console.log('Fim da música');
-    // organizaPosicao();
+    organizaPosicao();
     pessoas.forEach((pessoa) => {
         console.log(pessoa.posicao + "º lugar " + pessoa.nome);
     });
@@ -50,7 +50,7 @@ function removeTodasAnimacoes(): void {
         subindo?.classList.remove('subindo');
         subindo?.classList.remove('descendo');
     
-        const borda = document.getElementById("img" + (pessoa.id).toString());
-        borda?.classList.remove('borda');
+        // const borda = document.getElementById("img" + (pessoa.id).toString());
+        // borda?.classList.remove('borda');
     });
 }

@@ -12,3 +12,21 @@ export function alteraTempoPessoa() {
         element.innerText = converterParaSegundos(musica.pessoaCantando().tempo);
     }
 }
+export function adicionarBorda(pessoa) {
+    console.log(musica.pessoaCantando().id);
+    const borda = document.getElementById(`img${pessoa.id}`);
+    borda?.classList.add('borda');
+}
+export function removerBorda(pessoa) {
+    const borda = document.getElementById(`img${pessoa.id}`);
+    borda?.classList.remove('borda');
+}
+// export function adicionarBorda(): void {
+//     console.log(musica.pessoaCantando().id)
+//     const borda = document.getElementById(`img${musica.pessoaCantando().id}`);
+//     borda?.classList.add('borda');
+// }
+// export function removerBorda(): void {
+//     const borda = document.getElementById(`img${musica.pessoaCantando().id}`);
+//     borda?.classList.remove('borda');
+// }

@@ -1,6 +1,6 @@
 import { Pessoa } from "../models/pessoa.js";
 import { momentos, musica, pessoas } from "../util/dados.js";
-import { adicionaTempoMusica, alteraTempoPessoa } from "../view/tempoMusica.js";
+import { adicionaTempoMusica, adicionarBorda, alteraTempoPessoa, removerBorda } from "../view/tempoMusica.js";
 
 export function controlarCronometro(): void {
     adicionaTempoMusica();
@@ -24,10 +24,12 @@ function naoAcabouMomento(): Boolean {
 function alteraPessoaCantando(pessoa: Pessoa): void {
     if (comecouCantar(pessoa)) {
         pessoa.estaCantando = true;
+        adicionarBorda(pessoa);
     }
 
     if (terminouCantar(pessoa)) {
         pessoa.estaCantando = false;
+        removerBorda(pessoa);
     } 
 }
 

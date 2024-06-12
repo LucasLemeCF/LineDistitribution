@@ -26,7 +26,7 @@ function finalizaMusica(intervalId) {
 }
 function resultadoFinal() {
     console.log('Fim da música');
-    // organizaPosicao();
+    organizaPosicao();
     pessoas.forEach((pessoa) => {
         console.log(pessoa.posicao + "º lugar " + pessoa.nome);
     });
@@ -41,7 +41,7 @@ function removeTodasAnimacoes() {
         const subindo = document.getElementById("pessoa" + (pessoa.id).toString());
         subindo?.classList.remove('subindo');
         subindo?.classList.remove('descendo');
-        const borda = document.getElementById("img" + (pessoa.id).toString());
-        borda?.classList.remove('borda');
+        // const borda = document.getElementById("img" + (pessoa.id).toString());
+        // borda?.classList.remove('borda');
     });
 }

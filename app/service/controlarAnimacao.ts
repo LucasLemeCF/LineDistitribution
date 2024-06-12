@@ -3,6 +3,9 @@ import { musica, pessoas } from "../util/dados.js";
 import { atualizarPessoaDescendo, atualizarPessoaSubindo } from "../view/listaPessoas.js";
 
 export function iniciarAnimacao(): void { 
+    // adicionarBorda();
+    // removerBorda();
+
     if (temAnimacaoNaFila()) {
         const pessoa = musica.filaAnimacao[0];
 
@@ -55,9 +58,6 @@ function animar(pessoa: Pessoa): void {
 
     const divPessoaDescendo = document.getElementById("pessoa" + (pessoa.posicaoAnimacao-1).toString());
     divPessoaDescendo?.classList.add('descendo');
-
-    const borda = document.getElementById("img" + (pessoa.id).toString());
-    borda?.classList.add('borda');
 }
 
 function removeAnimacaoAnterior(posicaoAnimacao: number): void {
@@ -68,9 +68,6 @@ function removeAnimacaoAnterior(posicaoAnimacao: number): void {
     const descendo = document.getElementById("pessoa" + (posicaoAnimacao).toString());
     descendo?.classList.remove('subindo');
     descendo?.classList.remove('descendo');
-
-    const borda = document.getElementById("img" + (posicaoAnimacao+1).toString());
-    borda?.classList.remove('borda');
 }
 
 export function removerTodasAnimacoes(): void {

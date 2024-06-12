@@ -28,9 +28,10 @@ export function atualizarPessoaDescendo(pessoa) {
     tr ? tr.innerHTML = adicionaPessoa(pessoa) : null;
 }
 function adicionaPessoa(pessoa) {
+    let borda = pessoa.estaCantando ? 'borda' : '';
     return `
         <td>
-            <img id="img${pessoa.id}" class="foto" src="../img/${pessoa.nome}.jpeg">
+            <img id="img${pessoa.id}" class="foto ${borda}" src="../img/${pessoa.nome}.jpeg">
         </td>
         <td>
             <div class="item">
