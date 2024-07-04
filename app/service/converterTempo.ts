@@ -1,4 +1,4 @@
-import { musica } from "../util/dados.js";
+import { musica, tamanhoDaBarra } from "../util/dados.js";
 
 export function paraDecimoDeSegundo(tempo: string): number{
     const [minutos, segundos, milisegundos] = tempo.split(':');
@@ -47,7 +47,7 @@ export function caluculaTamanhoBarra(tempoAtual: number): number {
     if (tempoAtual == 0) {
         resultado = 0;
     } else {
-        resultado = (tempoAtual / musica.tempoFinal) * 100;
+        resultado = (tempoAtual / musica.tempoFinal) * 100 * tamanhoDaBarra;
     }
 
     return resultado;
