@@ -27,7 +27,7 @@ function adicionaPessoa(pessoa) {
     let borda = pessoa.estaCantando ? 'borda' : '';
     return `
         <div class="col-3">
-            <img id="img${pessoa.id}" class="foto ${borda} rounded-circle mt-1 float-end" src="../img/${pessoa.nome}.jpeg">
+            <img id="img${pessoa.id}" class="foto ${borda} rounded-circle mt-1 float-end" src="../img/${pessoa.nome}.jpg">
         </div>
         <div class="col-3">
             <div class="item">

@@ -3,10 +3,10 @@ import { Musica } from "../models/musica.js";
 import { Pessoa } from "../models/pessoa.js";
 // (Posição inicial, Nome)
 export var pessoas = [
-    new Pessoa(1, 'Dahye'),
-    new Pessoa(2, 'Lenay'),
-    new Pessoa(3, 'Luna'),
-    new Pessoa(4, 'Misook'),
+    new Pessoa(1, 'Runa'),
+    new Pessoa(2, 'Lacey'),
+    new Pessoa(3, 'Haram'),
+    new Pessoa(4, 'Luna'),
 ];
 // (Numero da posição inicial, Tempo no formato MM:SS:MS)
 export var momentos = [
